@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>irfan</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #001f3f, #003366);
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    header {
+      position: absolute;
+      top: 30px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    header span {
+      color: #e60000;
+    }
+
+    .center-button {
+      margin-top: 120px;
+      padding: 15px 35px;
+      font-size: 1.4rem;
+      background-color: #e60000;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    }
+
+    .center-button:hover {
+      background-color: #ff1a1a;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.85rem;
+      color: #cccccc;
+    }
+    
+    .typing-container {
+  text-align: center;
+  font-size: 20px;
+  color: white;
+  margin-bottom: 20px;
+  min-height: 30px;
+}
+
+#typing-text::after {
+  content: '|';
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CNN INDONESIA</h1>
+  </header>
+  
+  <div class="typing-container">
+  <span id="typing-text"></span>
+</div>
+
+  <a href="https://www.cnnindonesia.com/nasional/20250528203442-32-1234350/prabowo-akan-temani-macron-kunjungi-akmil-dan-candi-borobudur-hari-ini" class="center-button">Baca Selengkapnya</a>
+  
+  <script>
+  const words = ["Berita Selengkapnya", "Click button", "Otomatis ke Sumber Nya"]
+let i = 0;
+let j = 0;
+let currentWord = '';
+let isDeleting = false;
+let speed = 100;
+
+function typeEffect() {
+  currentWord = words[i];
+  let display = document.getElementById("typing-text");
+
+  if (isDeleting) {
+    display.textContent = currentWord.substring(0, j--);
+  } else {
+    display.textContent = currentWord.substring(0, j++);
+  }
+
+  if (!isDeleting && j === currentWord.length + 1) {
+    isDeleting = true;
+    speed = 1000; 
+  } else if (isDeleting && j === 0) {
+    isDeleting = false;
+    i = (i + 1) % words.length;
+    speed = 200;
+  } else {
+    speed = isDeleting ? 50 : 100;
+  }
+
+  setTimeout(typeEffect, speed);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  typeEffect();
+});
+ </script>
+
+  <footer>
+    &copy; 2025 Irfan - Berita kompas Tv 
+  </footer>
+</body>
+</html>
